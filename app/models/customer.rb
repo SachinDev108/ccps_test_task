@@ -5,4 +5,29 @@ class Customer < ApplicationRecord
   validates :name, :customer_number, presence: true
   validates :customer_number, uniqueness: true
   
+  before_create :generate_customer_number
+
+  
+  def create_sale (sale)
+    byebug
+    begin
+      if new_record?
+        transaction do
+          create!(attributes.merge(customer_number: generate_customer_number))
+          PurchaseHistory.create!(sale)
+        end
+      else
+        PurchaseHistory.create!(sale)
+      end
+    rescue ActiveRecord::RecordInvalid => exception
+      customer
+    end 
+  end
+
+  protected
+
+  def generate_customer_number
+    self.customer_number = SecureRandom.urlsafe_base64
+    generate_customer_number if self.exists?(customer_number: self.customer_number)
+  end
 end
