@@ -1,6 +1,10 @@
 class Customer < ApplicationRecord
-  has_many :sales, dependent: :destroy, foreign_key: 'customer_number'
-  has_many :customer_services, dependent: :destroy, foreign_key: 'customer_number'
+  has_many :sales, dependent: :destroy, 
+    foreign_key: 'customer_number',
+    primary_key: 'customer_number'
+  has_many :customer_services, dependent: :destroy,
+    foreign_key: 'customer_number',
+    primary_key: 'customer_number'
 
   validates :name, :customer_number, presence: true
   validates :customer_number, uniqueness: true
@@ -11,22 +15,26 @@ class Customer < ApplicationRecord
   def create_sale (sale)
     begin
       if new_record?
+        customer_new_number = generate_customer_number
         transaction do
-          create!(attributes.merge(customer_number: generate_customer_number))
-          Sale.create!(sale)
+          customer = Customer.create!(sale[:customer]
+            .merge(customer_number: customer_new_number))
+          customer.sales.create!(sale[:sale].merge(customer_number: customer_new_number))
         end
       else
-        Sale.create!(sale)
+        sales.create!(sale[:sale].merge(customer_number: customer_number))
       end
     rescue ActiveRecord::RecordInvalid => exception
-      customer
+      self || customer
     end 
   end
 
   protected
 
   def generate_customer_number
-    self.customer_number = SecureRandom.urlsafe_base64
-    generate_customer_number if self.exists?(customer_number: self.customer_number)
+    loop do
+      uniq_number = SecureRandom.hex(10)
+      break uniq_number unless Customer.where(customer_number: uniq_number).exists?
+    end
   end
 end
