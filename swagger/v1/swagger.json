@@ -6,7 +6,7 @@
   },
   "basePath": "/api/v1",
   "paths": {
-    "/purchase_histories": {
+    "/sales": {
       "post": {
         "summary": "Creates a sale to a customer",
         "tags": [

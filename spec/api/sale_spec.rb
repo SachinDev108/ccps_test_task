@@ -1,10 +1,10 @@
-# spec/integrations/purchase_history_spec.rb
+# spec/integrations/sale_spec.rb
 
 require 'swagger_helper'
 
 describe 'CCPS API' do
 
-  path '/purchase_histories' do
+  path '/sales' do
 
     post 'Creates a sale to a customer' do
       tags 'CCPS'

@@ -1,4 +1,4 @@
-class PurchaseHistory < ApplicationRecord
+class Sale < ApplicationRecord
   belongs_to :customer, foreign_key: 'customer_number'
 
   validates :item, :customer_number, :price, :date_of_transaction, :source, presence: true
