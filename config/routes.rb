@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  root 'home#index'
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -8,7 +11,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :customers, only: [:index]
-      resources :sales, only: [:create, :index]
+      resources :sales, only: %i[create index]
     end
-  end    
+  end
 end

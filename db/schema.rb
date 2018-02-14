@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,37 +12,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213094806) do
-
+ActiveRecord::Schema.define(version: 20_180_213_094_806) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "customer_services", force: :cascade do |t|
-    t.integer "customer_number"
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_number"], name: "index_customer_services_on_customer_number"
+  create_table 'customer_services', force: :cascade do |t|
+    t.string 'customer_number'
+    t.text 'comment'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['customer_number'], name: 'index_customer_services_on_customer_number'
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "name"
-    t.string "surname"
-    t.integer "customer_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_number"], name: "index_customers_on_customer_number"
+  create_table 'customers', force: :cascade do |t|
+    t.string 'name'
+    t.string 'surname'
+    t.string 'customer_number', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['customer_number'], name: 'index_customers_on_customer_number'
   end
 
-  create_table "purchase_histories", force: :cascade do |t|
-    t.integer "customer_number"
-    t.string "item"
-    t.string "price"
-    t.date "date_of_transaction"
-    t.string "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_number"], name: "index_purchase_histories_on_customer_number"
+  create_table 'sales', force: :cascade do |t|
+    t.string 'customer_number'
+    t.string 'item'
+    t.string 'price'
+    t.date 'date_of_transaction'
+    t.string 'source'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['customer_number'], name: 'index_sales_on_customer_number'
   end
-
 end

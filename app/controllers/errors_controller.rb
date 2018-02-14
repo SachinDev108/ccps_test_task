@@ -1,4 +1,6 @@
-class ErrorsController < ApplicationController
+# frozen_string_literal: true
+
+class ErrorsController < ApplicationController # :nodoc:
   def not_found
     render json: {
       status: 404,
