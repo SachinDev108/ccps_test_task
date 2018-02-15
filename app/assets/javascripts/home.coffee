@@ -55,4 +55,22 @@ $(document).on 'click', '.submit-data', ->
       return
   return
 
+$(document).on 'click', '.get-list', ->
+  $.ajax
+    url: '/api/v1/customers'
+    dataType: 'json'
+    contentType: 'application/json;charset=utf-8'
+    type: 'get'
+    success: (data, textStatus, xhr) ->
+      str = JSON.stringify(data, undefined, 4)
+      $('.info-list').html str
+      $('.info-status').html xhr.status
+      return
+    error: (data) ->
+      str = JSON.stringify(data.responseJSON)
+      $('.info-list').html 
+      $('.info-status').html data.status
+      return
+  return  
+
   
