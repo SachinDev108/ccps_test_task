@@ -16,11 +16,4 @@ class Customer < ApplicationRecord # :nodoc:
     save
     self
   end
-
-  def self.generate_customer_number
-    loop do
-      uniq_id = SecureRandom.hex(10)
-      break uniq_id unless Customer.where(customer_number: uniq_id).exists?
-    end
-  end
 end

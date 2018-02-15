@@ -30,7 +30,7 @@ module Api
 
       def unique_id
         uuid = req_params[:customer][:customer_number]
-        uuid.present? ? uuid : Customer.generate_customer_number
+        uuid.present? ? uuid : SecureRandom.hex(10)
       end
 
       def render_response(sale)
