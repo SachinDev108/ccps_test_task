@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h2>Create Sale <small>with sale customer</small></h2>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="source-list">
+      <%= select_tag :source, options_for_select(Sale::SOURCE_LIST.map { |name| [name.titleize, name]}), prompt: 'Select Source', class: 'form-control' %>
+    </div>
+    <br />
+    <div class="request-url">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Request URL</div>
+        <div class="panel-body info-box"></div>
+      </div>
+    </div> 
+    <div class="submit-btn">
+      <input class="btn btn-primary submit-data" type="button" value="Submit">
+    </div>  
+  </div>
+  <div  class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="card">
+      <div class="card-block">
+        <%= text_area(:parameters, :body, cols: 60, rows: 10, class: 'form-control') %>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="response-code">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Responce Code</div>
+      <div class="panel-body info-code"></div>
+    </div>
+  </div>  
+</div>
+<div class="row">
+  <div class="response-text">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Responce Body</div>
+      <div class="panel-body info-body"></div>
+    </div>
+  </div>  
+</div>
+<script type="text/javascript">
+  
+</script>
