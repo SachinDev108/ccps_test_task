@@ -6,6 +6,22 @@
   },
   "basePath": "/api/v1",
   "paths": {
+    "/customers": {
+      "get": {
+        "summary": "List of customers",
+        "tags": [
+          "CCPS"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "List of customers"
+          }
+        }
+      }
+    },
     "/sales": {
       "post": {
         "summary": "Creates a sale to a customer",
@@ -74,6 +90,9 @@
           }
         ],
         "responses": {
+          "422": {
+            "description": "validation error"
+          },
           "201": {
             "description": "sales created"
           }
