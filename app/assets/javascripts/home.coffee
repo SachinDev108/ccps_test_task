@@ -33,7 +33,7 @@ $(document).on 'change', '#source', ->
   $('.info-box').html '<p>' + request_url + '</p>'
   return  
 
-$(document).on 'click', '.submit-btn', ->
+$(document).on 'click', '.submit-data', ->
   dataVal = JSON.parse($('#parameters_body').val())
   if dataVal.attributes.source == ""
     alert('Please add source');
