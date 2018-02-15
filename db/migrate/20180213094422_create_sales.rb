@@ -6,7 +6,7 @@ class CreateSales < ActiveRecord::Migration[5.1]
       t.string :customer_number, index: true
       t.string :item
       t.string :price
-      t.date :date_of_transaction
+      t.datetime :date_of_transaction
       t.string :source
       t.timestamps
     end
