@@ -33,7 +33,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'rswag'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'twitter-bootstrap-rails'
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails', '4.8.0'
+  gem 'rswag'
 end
 
 group :test do
