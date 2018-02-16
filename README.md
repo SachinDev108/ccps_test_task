@@ -1,42 +1,38 @@
-# README
+# INTRODUCTION
 
-Here we have added a solution of business that want to consolidate all the interactions a customer   has with it into a single profile. This includes many source systems and  then be able to use the profile information in all interactions with the customer to provide a personalised experience. 
+This repository consisting of the api to push data into central database from different sources. It pushes the sales data from E-commerce website, a POS system or a store. Swagger docs and rspecs are added into the repo to play with the API's
 
-# Features: 
-* Add Sale 
-Here we are adding sale with its customer details.When there is hit of endpoint with valid data in parameters then system will create sale with the sale customer. 
-System will also check that if the db has customer with the given details in request then it will not create a new customer instead of this it just add sale for customer. 
-If the customer is not present with the given details system will create customer with the sale. 
-URL: api/v1/sales 
-Type: POST 
+# INSTALLATION
+To setup this project, please open the source folder in command prompt and run the following commands sequentially.
+* Clone the source code
+* bundle install
+* rake db:create
+* rake db:migrate
+* rake rswag:specs:swaggerize (To generate swagger docs they will be served from the path  /api-docs)
 
-* Display customer with the sales 
-We felt need to display the customes and their sales, for this there is a end point by hiting it will return a json of customers with their sales. 
-URL: 'api/v1/customers' 
+# Technologies used
+* Language: Ruby 2.4.2 
+* Framework: Rails 5.1
+* Some major Ruby Gems/Packages: rswag, rspec, factory-girls
+* CSS3/HTML5
+
+# FEATURES
+* This source code exposes JSON base API to register sales from various sources.
+* Central database to record sales/customer data
+* Dashboard to select source and generate request at the path PATH='/'
+* Customer and their sals list in JSON view at the path '/customers'
+* TDD approach: rspecs on models and controllers
+* Rubocop: High level Ruby syntax correction bot (Please run rubocop in th command line)
+* Swagger: Documentation of the source code at the PATH = '/api-docs'
+* Sales/Customer registratio is properly validated in Models, Controllers are tried to keep thin.
+* Followin api urls are available:
+
+Crate Sales: 
+POST: api/v1/sales 
+
+Display customer with their sales:
+GET: 'api/v1/customers' 
 Type: GET 
 
-* Dashboard Page 
-Additonally there is a dashboard page that will describe what parameters needed to use the endpoints, also it will display the response with the status on the page. 
-URL: 'api/v1/customers' 
-Type: GET 
-
-# Endpoints: 
-This section will describe the endpoints 
-
-* For adding sale we need to use 'api/v1/sales' with the method type post. 
-
-* For getting list of customers and sales we need to use 'api/v1/customers' with the method type get. 
-
-* For dashboard page we need to use root url '/'.
-
-# Additional Features: 
-
-* Here we have used swagger docs for better api documentation.The swagger docs for the endpoints can be view and test on the docs page by hitting url '/api-docs'. 
-
-* Also We have written rspecs for the sale create to ensure the functionaly is as per expected. 
-
-* We have used 'rubocop' libary to ensure and maintain code as per good ruby code specs. 
-
-* Request and response are of as per json-api specs. 
-
-* Added code to ensure the reques type, if it is not code will give error. 
+Dashboard to fire and play with requests
+GET: /
